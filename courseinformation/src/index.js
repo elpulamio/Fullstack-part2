@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-//Before task 2.4 I use Course as follows, but how to use it now?
-/* const Course = ({ course }) => {
-  return (
-    <div>
-      <Header course={course} />
-      <Content parts={course.parts} />
-      <Total parts={course.parts} />
-    </div>
+const Course = ({ course }) => {
+  return(
+    <>
+    {course.map(item => 
+      <div key={item.id}> <Header course={item.name} /> 
+        {item.parts.map(sub => 
+        <p key={sub.id}> <Content parts={sub} /> </p> )}
+        <Total parts={item} /> 
+      </div>)}
+    </>
   )
-} */
+}
 
 const Header = ({ course }) => {
   return (
@@ -82,12 +84,7 @@ const App = () => {
   return (
     <div>
       <h1>Web development curriculum</h1>
-      {courses.map(item => 
-      <div key={item.id}> <Header course={item.name} /> 
-        {item.parts.map(sub => 
-        <p key={sub.id}> <Content parts={sub} /> </p> )} 
-        <Total parts={item} /> 
-      </div>)}
+      <Course course={courses}/>
     </div>
   )
 }
