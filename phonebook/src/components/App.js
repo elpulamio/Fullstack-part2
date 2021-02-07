@@ -3,22 +3,27 @@ import Person from './Person'
 
 const App = () => {
   const [ persons, setPersons ] = useState([
-    { name: 'Arto Hellas' }
+    { name: 'Arto Hellas', id: 1 }
   ]) 
   const [ newName, setNewName ] = useState('')
 
   const addPerson = (event) => {
     event.preventDefault()
     const personObject = {
-      name: newName
+      name: newName,
+      id: persons.length + 1
     }
   
-    setPersons(persons.concat(personObject))
+    if (persons.map(item => item.name).includes(newName)){
+      alert(`${newName} is already added to phonebook`)
+    }
+    else{
+      setPersons(persons.concat(personObject))
+    }
     setNewName('')
   }
 
   const handleNoteChange = (event) => {
-    console.log(event.target.value)
     setNewName(event.target.value)
   }
 
@@ -36,7 +41,7 @@ const App = () => {
       <h2>Numbers</h2>
       <div>
         {persons.map((person) => 
-          <Person key={person.name} person={person} />
+          <Person key={person.id} person={person} />
         )}
       </div>
     </div>
