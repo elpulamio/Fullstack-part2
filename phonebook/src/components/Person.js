@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const Person = ({ person }) => {
   return (
-    <>{person.name}<br /></>
+    <>{person.name} {person.number}<br /></>
   )
 }
 

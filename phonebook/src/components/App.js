@@ -3,15 +3,19 @@ import Person from './Person'
 
 const App = () => {
   const [ persons, setPersons ] = useState([
-    { name: 'Arto Hellas', id: 1 }
+    { name: 'Arto Hellas', 
+      id: 1,
+      number: '050 1234-567' }
   ]) 
   const [ newName, setNewName ] = useState('')
+  const [ newNumber, setNewNumber ] = useState('')
 
   const addPerson = (event) => {
     event.preventDefault()
     const personObject = {
       name: newName,
-      id: persons.length + 1
+      id: persons.length + 1,
+      number: newNumber
     }
   
     if (persons.map(item => item.name).includes(newName)){
@@ -21,10 +25,15 @@ const App = () => {
       setPersons(persons.concat(personObject))
     }
     setNewName('')
+    setNewNumber('')
   }
 
-  const handleNoteChange = (event) => {
+  const handleNoteChangeName = (event) => {
     setNewName(event.target.value)
+  }
+
+  const handleNoteChangeNr = (event) => {
+    setNewNumber(event.target.value)
   }
 
   return (
@@ -32,7 +41,8 @@ const App = () => {
       <h2>Phonebook</h2>
       <form onSubmit={addPerson}>
         <div>
-          name: <input value={newName} onChange={handleNoteChange} />
+          name: <input value={newName} onChange={handleNoteChangeName} /><br />
+          number: <input value={newNumber} onChange={handleNoteChangeNr} />
         </div>
         <div>
           <button type="submit">add</button>
