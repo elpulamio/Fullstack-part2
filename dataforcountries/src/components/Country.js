@@ -5,22 +5,26 @@ const Country = ({ country, countriesToShow }) => {
     const [show, setShow] = useState(false)
     const handleClick = () => setShow(true)
     const api_key = process.env.REACT_APP_API_KEY
-
     const [ weatherLocation, setWeatherLocation ] = useState([])
     const [ weatherCurrent, setWeatherCurrent ] = useState([])
-    const axiosForWeather = require('axios');
+    
     const params = {
         access_key: api_key,
         query: country.name
     }
 
-     const hook = () => {
+    const hook = () => {
+        //to prevent an "Warning: Can't perform a React state update on an unmounted component."
+        let unmounted = false
         axios
             .get('http://api.weatherstack.com/current', {params})
             .then(response => {
-            setWeatherLocation(response.data.location)
-            setWeatherCurrent(response.data.current)
+            if (!unmounted) {
+                setWeatherLocation(response.data.location)
+                setWeatherCurrent(response.data.current)
+            }
         })
+        return () => unmounted = true
     }
     useEffect(hook, []) 
 
@@ -28,8 +32,7 @@ const Country = ({ country, countriesToShow }) => {
         return <>Too many matches, specify another filter</>
     }
     
-    else if (countriesToShow.length == 1 || show ==true) {
-        console.log(weatherCurrent)
+    else if (countriesToShow.length == 1 || show == true) {
         return (
             <>
                 <h1>{country.name}</h1> 
