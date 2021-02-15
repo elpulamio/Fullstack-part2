@@ -20,12 +20,8 @@ const App = () => {
 
   let message
   let country
-  if (countriesToShow.length == 1) {
-      console.log(countriesToShow.length)
-    message = countriesToShow.map(country => 
-        <Country key={country.name} country={country} countriesToShow={countriesToShow} />)
-  }
-  else if (countriesToShow.length <= 10) {
+  
+  if (countriesToShow.length <= 10) {
     message = countriesToShow.map(country => 
     <Country key={country.name} country={country} countriesToShow={countriesToShow} />)
   }
