@@ -1,64 +1,19 @@
 {
   "persons": [
     {
-      "name": "Arto Hellas",
-      "number": "040-123456",
+      "name": "Lisa S",
+      "number": "987 578",
       "id": 1
     },
     {
-      "name": "Ada Lovelace",
-      "number": "39-44-5323523",
+      "name": "Matti Meikäläinen",
+      "number": "86 0985 876",
       "id": 2
     },
     {
-      "name": "Dan Abramov",
-      "number": "12-43-234345",
+      "name": "Someone Too",
+      "number": "988 987 987 987",
       "id": 3
-    },
-    {
-      "name": "Mary Poppendieck",
-      "number": "39-23-6423122",
-      "id": 4
-    },
-    {
-      "name": "John Malkko",
-      "id": 5,
-      "number": "678456"
-    },
-    {
-      "name": "Mike Pukeli",
-      "id": 6,
-      "number": "90 90 90 -765"
-    },
-    {
-      "name": "Taina Tuina",
-      "id": 7,
-      "number": "7987987"
-    },
-    {
-      "name": "Kaisa Mäkärä",
-      "id": 8,
-      "number": "5987"
-    },
-    {
-      "name": "Kuukkeli Ukkeli",
-      "id": 9,
-      "number": "9898"
-    },
-    {
-      "name": "Hessu hopo",
-      "id": 10,
-      "number": "435"
-    },
-    {
-      "name": "Mitäs Viälä",
-      "id": 11,
-      "number": "343434343434"
-    },
-    {
-      "name": "ÖöökkönenÄ",
-      "id": 12,
-      "number": "232"
     }
   ]
 }

@@ -29,7 +29,6 @@ const App = () => {
     event.preventDefault()
     const personObject = {
       name: newName,
-      id: persons.length + 1,
       number: newNumber
     }
   
@@ -45,6 +44,16 @@ const App = () => {
     }
     setNewName('')
     setNewNumber('')
+  }
+
+  const handleDelete = (id, name) => {
+    if (window.confirm(`Delete ${name}?`)) {
+      phonebookService
+        .delPerson(id)
+        .then(deletedPerson => {
+          setPersons(persons.filter(item => item.id !== id))
+        })
+    }
   }
 
   const handlePersonChangeName = (event) => {
@@ -68,7 +77,7 @@ const App = () => {
       <h2>Numbers</h2>
       <div>
         {namesToShow.map(person => 
-          <Person key={person.id} person={person} />
+          <Person key={person.id} person={person} handleDelete={handleDelete} />
         )}
       </div>
     </div>
