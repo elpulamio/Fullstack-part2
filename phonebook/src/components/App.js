@@ -36,30 +36,34 @@ const App = () => {
       alert(`${newName} is already added to phonebook`)
     }
     else{
-      setPersons(persons.concat(personObject))
+      axios
+        .post('http://localhost:3001/persons', personObject)
+        .then(response => {
+          setPersons(persons.concat(response.data))
+        })
     }
     setNewName('')
     setNewNumber('')
   }
 
-  const handleNoteChangeName = (event) => {
+  const handlePersonChangeName = (event) => {
     setNewName(event.target.value)
   }
 
-  const handleNoteChangeNr = (event) => {
+  const handlePersonChangeNr = (event) => {
     setNewNumber(event.target.value)
   }
 
-  const handleNoteChangeFilter = (event) => {
+  const handlePersonChangeFilter = (event) => {
     setNewFilter(event.target.value)
   }
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <Filter filterValue={nameFilter} filterOnChange={handleNoteChangeFilter} />
+      <Filter filterValue={nameFilter} filterOnChange={handlePersonChangeFilter} />
       <h2>add a new</h2>
-      <PersonForm filterOnSubmit={addPerson} filterValue={newName} filterOnChange={handleNoteChangeName} filterValue2={newNumber} filterOnChange2={handleNoteChangeNr} />
+      <PersonForm filterOnSubmit={addPerson} filterValue={newName} filterOnChange={handlePersonChangeName} filterValue2={newNumber} filterOnChange2={handlePersonChangeNr} />
       <h2>Numbers</h2>
       <div>
         {namesToShow.map(person => 
