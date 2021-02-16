@@ -33,7 +33,19 @@ const App = () => {
     }
   
     if (persons.map(item => item.name).includes(newName)){
-      alert(`${newName} is already added to phonebook`)
+      if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)){
+        const filteredId = persons.filter(item => item.name.includes(newName)).map(filtered => filtered.id)
+        console.log(filteredId)
+        phonebookService
+          .update(filteredId, personObject)
+          .then(() => {
+            phonebookService
+              .getAll()
+              .then(initialPersons => {
+                setPersons(initialPersons)
+              })
+          })
+      }
     }
     else{
       phonebookService
@@ -50,7 +62,7 @@ const App = () => {
     if (window.confirm(`Delete ${name}?`)) {
       phonebookService
         .delPerson(id)
-        .then(deletedPerson => {
+        .then(() => {
           setPersons(persons.filter(item => item.id !== id))
         })
     }
