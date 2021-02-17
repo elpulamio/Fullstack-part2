@@ -3,6 +3,7 @@ import Person from './Person'
 import Filter from './Filter'
 import PersonForm from './PersonForm'
 import phonebookService from '../services/persons'
+import Notification from './Notification'
 
 const App = () => {
   const [ persons, setPersons ] = useState([]) 
@@ -10,6 +11,8 @@ const App = () => {
   const [ newNumber, setNewNumber ] = useState('')
   const [ showAll ] = useState(false)
   const [ nameFilter, setNewFilter ] = useState('')
+  const [errorMessage, setErrorMessage] = useState(null)
+  const [okMessage, setOkMessage] = useState(null)
 
   const hook = () => {
     phonebookService
@@ -42,6 +45,25 @@ const App = () => {
               .then(initialPersons => {
                 setPersons(initialPersons)
               })
+              setOkMessage(
+                `Person '${newName}' new number updated`
+              )
+              setTimeout(() => {
+                setOkMessage(null)
+              }, 5000)
+          })
+          .catch(error => {
+            setErrorMessage(
+              `Person '${newName}' was already removed from server`
+            )
+            setTimeout(() => {
+              setErrorMessage(null)
+            }, 5000)
+            phonebookService //render updated phonebook after error
+              .getAll()
+              .then(initialPersons => {
+                setPersons(initialPersons)
+              })
           })
       }
     }
@@ -50,7 +72,17 @@ const App = () => {
         .create(personObject)
         .then(returnedPerson => {
           setPersons(persons.concat(returnedPerson))
+          setOkMessage(
+            `Added '${newName}'`
+          )
+          setTimeout(() => {
+            setOkMessage(null)
+          }, 5000)
         })
+        /* FIXME: it is possible to create multible items with the same name 
+        using different browsers at the same time and it cause problems
+        if trying to update number for that name. Deleting is still possible
+        because id is unique. So, it would need some check before add... */
     }
     setNewName('')
     setNewNumber('')
@@ -62,6 +94,25 @@ const App = () => {
         .delPerson(id)
         .then(() => {
           setPersons(persons.filter(item => item.id !== id))
+          setOkMessage(
+            `'${name}' removed from server`
+          )
+          setTimeout(() => {
+            setOkMessage(null)
+          }, 5000)
+        })
+        .catch(error => {
+          setErrorMessage(
+            `Person '${name}' was already removed from server`
+          )
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 5000)
+          phonebookService //render updated phonebook after error
+            .getAll()
+            .then(initialPersons => {
+              setPersons(initialPersons)
+            })
         })
     }
   }
@@ -80,7 +131,8 @@ const App = () => {
 
   return (
     <div>
-      <h2>Phonebook</h2>
+      <h1>Phonebook</h1>
+      <Notification messageErr={errorMessage} messageOk={okMessage} />
       <Filter filterValue={nameFilter} filterOnChange={handlePersonChangeFilter} />
       <h2>add a new</h2>
       <PersonForm filterOnSubmit={addPerson} filterValue={newName} filterOnChange={handlePersonChangeName} filterValue2={newNumber} filterOnChange2={handlePersonChangeNr} />

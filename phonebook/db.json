@@ -11,49 +11,19 @@
       "id": 3
     },
     {
-      "name": "Masa",
-      "number": "333 333 333",
-      "id": 6
-    },
-    {
-      "name": "John Doe",
-      "number": "1234 5678",
-      "id": 7
-    },
-    {
-      "name": "Andy B",
-      "number": "09 09 09 09",
-      "id": 8
-    },
-    {
-      "name": "Cindy C",
-      "number": "987-34567",
-      "id": 9
-    },
-    {
       "name": "Liisa Meikäläinen",
       "number": "98654 7653",
       "id": 10
     },
     {
-      "name": "Andy",
-      "number": "123",
+      "name": "Kati Katti",
+      "number": "888 666 777",
       "id": 11
     },
     {
-      "name": "Matti",
-      "number": "999 666",
-      "id": 13
-    },
-    {
-      "name": "Andy BBB",
-      "number": "87654321",
-      "id": 14
-    },
-    {
-      "name": "Andy BB",
-      "number": "87 45 23 999",
-      "id": 15
+      "name": "Andy A",
+      "number": "33-33",
+      "id": 12
     }
   ]
 }
