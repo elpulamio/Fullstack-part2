@@ -33,8 +33,7 @@ const App = () => {
   
     if (persons.map(item => item.name).includes(newName)){
       if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)){
-        const filteredId = persons.filter(item => item.name.includes(newName)).map(filtered => filtered.id)
-        console.log(filteredId)
+        const filteredId = persons.filter(item => item.name == newName).map(filtered => filtered.id)
         phonebookService
           .update(filteredId, personObject)
           .then(() => {
