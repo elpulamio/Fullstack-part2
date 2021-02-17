@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 const PersonForm = ({ filterOnSubmit, filterValue, filterValue2, filterOnChange, filterOnChange2 }) => {
     return (

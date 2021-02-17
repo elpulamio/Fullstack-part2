@@ -11,19 +11,29 @@
       "id": 3
     },
     {
-      "name": "Liisa Kakkonen",
-      "number": "277777",
-      "id": 4
-    },
-    {
       "name": "Masa",
-      "number": "31313131 31313131",
+      "number": "333 333 333",
       "id": 6
     },
     {
       "name": "John Doe",
       "number": "1234 5678",
       "id": 7
+    },
+    {
+      "name": "Andy B",
+      "number": "12-34-56",
+      "id": 8
+    },
+    {
+      "name": "Cindy C",
+      "number": "987-34567",
+      "id": 9
+    },
+    {
+      "name": "Liisa Meikäläinen",
+      "number": "98654 7653",
+      "id": 10
     }
   ]
 }

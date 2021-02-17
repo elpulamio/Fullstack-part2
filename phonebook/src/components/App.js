@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import Person from './Person'
 import Filter from './Filter'
 import PersonForm from './PersonForm'
@@ -9,7 +8,7 @@ const App = () => {
   const [ persons, setPersons ] = useState([]) 
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
-  const [ showAll, setShowAll ] = useState(false)
+  const [ showAll ] = useState(false)
   const [ nameFilter, setNewFilter ] = useState('')
 
   const hook = () => {
